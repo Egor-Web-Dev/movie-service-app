@@ -1,0 +1,94 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.footer {
+  padding-block: 40px;
+
+  &__content {
+    justify-content: flex-end;
+  }
+
+  .social-list {
+    gap: 24px;
+
+    &__item {
+      font-size: 0;
+    }
+
+    &__link {
+      & > svg {
+        @include m-set-size(36px, 36px);
+        @include m-set-transition(fill);
+        fill: transparent;
+
+        & > rect {
+          stroke: $color-white-a80;
+        }
+
+        & > path {
+          fill: $color-white-a80;
+        }
+      }
+    }
+
+    .link-vk {
+      &:hover > svg {
+        fill: $color-blue-vk;
+      }
+
+      &:focus-visible > svg {
+        fill: $color-blue-vk;
+      }
+    }
+
+    .link-youtube {
+      &:hover > svg {
+        fill: $color-red-youtube;
+      }
+
+      &:focus-visible > svg {
+        fill: $color-red-youtube;
+      }
+    }
+
+    .link-ok {
+      &:hover > svg {
+        fill: $color-orange-ok;
+      }
+
+      &:focus-visible > svg {
+        fill: $color-orange-ok;
+      }
+    }
+
+    .link-telegram {
+      &:hover > svg {
+        fill: $color-blue-telegram;
+      }
+
+      &:focus-visible > svg {
+        fill: $color-blue-telegram;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .footer {
+    &__content {
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .footer {
+    padding-block: 24px;
+
+    .social-list {
+      &__item {
+        @include m-set-size(24px, 24px);
+      }
+    }
+  }
+}

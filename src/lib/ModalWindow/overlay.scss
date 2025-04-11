@@ -1,0 +1,52 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.overlay {
+  @include m-full-screen;
+  position: fixed;
+  z-index: 10;
+  background-color: $color-black-a50;
+  animation: scaling $transition-duration ease-in-out;
+}
+
+.horizontal {
+  &-start {
+    justify-content: flex-start;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-end {
+    justify-content: flex-end;
+  }
+}
+
+.vertical {
+  &-start {
+    align-items: flex-start;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-end {
+    align-items: flex-end;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@keyframes scaling {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

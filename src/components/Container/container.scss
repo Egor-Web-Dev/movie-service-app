@@ -1,0 +1,28 @@
+@use "../../styles/variables" as *;
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  padding-inline: 80px;
+  width: 100%;
+  max-width: 1440px;
+  min-width: 320px;
+}
+
+@media (max-width: $media-width-laptop) {
+  .container {
+    padding-inline: $container-padding-laptop;
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .container {
+    padding-inline: $container-padding-tablet;
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .container {
+    padding-inline: $container-padding-mobile;
+  }
+}

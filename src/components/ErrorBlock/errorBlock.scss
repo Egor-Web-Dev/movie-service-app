@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.error {
+  @include m-set-font(28px, 700, 133%);
+  justify-content: center;
+  padding: 10px;
+  border: 2px solid $color-red-rating;
+  color: $color-red-youtube;
+  background-color: $color-content-error;
+}

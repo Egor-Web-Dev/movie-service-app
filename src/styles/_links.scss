@@ -1,0 +1,57 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+
+a {
+  @include m-set-transition(
+    color,
+    background-color,
+    border-color,
+    outline-color
+  );
+  color: $content-primary;
+  text-decoration: none;
+  outline: none;
+}
+
+.inner-icon-effect {
+  &:hover {
+    color: $content-active;
+
+    & svg > path {
+      fill: $content-active;
+    }
+  }
+
+  &:focus-visible {
+    color: $content-active;
+
+    & svg > path {
+      fill: $content-active;
+    }
+  }
+
+  &:active {
+    color: $color-gray;
+
+    & svg > path {
+      fill: $color-gray;
+    }
+  }
+}
+
+.nav-link {
+  @extend .inner-icon-effect;
+  @include m-set-font(24px, 400, 133%);
+  gap: 12px;
+  align-items: center;
+  padding-block: 8px;
+  border-bottom: 2px solid transparent;
+
+  &--active {
+    border-bottom-color: $color-pink;
+  }
+
+  & svg > path {
+    @include m-set-transition(fill);
+  }
+}

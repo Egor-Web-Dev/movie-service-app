@@ -1,0 +1,32 @@
+@font-face {
+  font: {
+    display: swap;
+    family: "Play";
+    weight: 700;
+    style: normal;
+  }
+  src: local("Play Bold"),
+    url("../assets/fonts/Play-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font: {
+    display: swap;
+    family: "Play";
+    weight: 400;
+    style: normal;
+  }
+  src: local("Play Regular"),
+    url("../assets/fonts/Play-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font: {
+    display: swap;
+    family: "Open Sans";
+    weight: 700;
+    style: normal;
+  }
+  src: local("Open Sans"),
+    url("../assets/fonts/Open-Sans-Bold.woff2") format("woff2");
+}

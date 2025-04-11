@@ -1,0 +1,82 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.btn {
+  @include m-set-transition(color, border-color, background-color);
+  justify-content: center;
+  padding: 16px 22px;
+  border: none;
+  font-family: "Play", sans-serif;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+
+  & svg > path {
+    @include m-set-transition(fill, stroke);
+  }
+}
+
+.button {
+  @include m-set-font(18px, 700, 133%);
+  border-radius: 28px;
+  color: $color-white;
+}
+
+.primary-btn {
+  @extend .button;
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $content-active;
+  }
+
+  &:focus-visible {
+    background-color: $content-active;
+  }
+
+  &:active {
+    color: $color-white-a70;
+    background-color: $color-gray;
+  }
+
+  &:disabled {
+    color: $color-white-a70;
+    background-color: $color-gray;
+  }
+}
+
+.secondary-btn {
+  @extend .button;
+  background-color: $color-secondary;
+
+  &:hover {
+    color: $color-black;
+    background-color: $color-white;
+
+    & svg > path {
+      fill: $color-black;
+    }
+  }
+
+  &:focus-visible {
+    color: $color-black;
+    background-color: $color-white;
+
+    & svg > path {
+      fill: $color-black;
+    }
+  }
+
+  &:active {
+    color: $color-white-a70;
+    background-color: $color-gray;
+
+    & svg > path {
+      fill: $color-white-a70;
+    }
+  }
+}
+
+.default-btn {
+  padding: 0;
+}

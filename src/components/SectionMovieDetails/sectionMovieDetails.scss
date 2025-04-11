@@ -1,0 +1,70 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.about-movie {
+  padding-block: 40px 120px;
+
+  &__content {
+    flex-direction: column;
+  }
+
+  .details {
+    gap: 24px;
+    flex-direction: column;
+
+    &__item {
+      width: 60%;
+    }
+
+    &__item-text {
+      align-items: baseline;
+      width: 100%;
+
+      & > span {
+        flex-shrink: 0;
+      }
+    }
+
+    &__item-value {
+      width: 100%;
+    }
+  }
+}
+
+.dash-line {
+  margin-inline: 8px;
+  width: 100%;
+  border-bottom: 1px dashed $color-white-a50;
+}
+
+@media (max-width: $media-width-tablet) {
+  .about-movie {
+    .details {
+      &__item {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .about-movie {
+    .details {
+      gap: 12px;
+
+      &__item {
+        gap: 4px;
+        flex-direction: column;
+
+        &-text {
+          @include m-set-font(14px, 400, 133%);
+          color: $color-white-a50;
+        }
+      }
+    }
+  }
+
+  .dash-line {
+    display: none;
+  }
+}

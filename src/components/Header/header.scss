@@ -1,0 +1,61 @@
+@use "sass:color" as color;
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.header {
+  padding-block: 24px;
+
+  &__content {
+    position: relative;
+    gap: 80px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo-link {
+    &:focus-visible {
+      filter: drop-shadow(0 5px 3px $color-pink);
+    }
+  }
+
+  .nav {
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__login-btn {
+    @include m-set-font(24px, 400, 133%);
+    color: $color-white;
+  }
+
+  &__search {
+    width: 62%;
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .header {
+    .nav {
+      gap: 20px;
+      justify-content: center;
+      width: initial;
+    }
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .header {
+    padding-block: 20px;
+
+    .logo {
+      @include m-set-size(80px, 24px);
+    }
+
+    .nav {
+      justify-content: center;
+      width: initial;
+    }
+  }
+}

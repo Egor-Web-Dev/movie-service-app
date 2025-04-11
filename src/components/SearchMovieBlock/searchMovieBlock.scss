@@ -1,0 +1,166 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.search-movies {
+  width: 100%;
+
+  &__content {
+    position: relative;
+  }
+
+  &__field {
+    width: 100%;
+    border-radius: $border-radius-8;
+    background-color: $color-secondary;
+
+    .field__input {
+      color: $color-white;
+
+      &::placeholder {
+        color: $color-silver;
+      }
+    }
+  }
+
+  &__reset-btn {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+
+    & > svg {
+      @include m-set-size(18px, 18px);
+
+      & > path {
+        @include m-set-transition(fill);
+        fill: $color-white-a50;
+      }
+    }
+
+    &:hover {
+      & > svg > path {
+        fill: $color-content-error;
+      }
+    }
+
+    &:focus-visible {
+      & > svg > path {
+        fill: $color-content-error;
+      }
+    }
+  }
+
+  &:focus-within .dropdown-menu {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    z-index: 10;
+    top: 60px;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: $border-radius-8;
+    width: 85%;
+    min-height: 110px;
+    max-height: 476px;
+    background-color: $color-secondary;
+    overflow-y: auto;
+    scrollbar-width: thin;
+
+    &__list {
+      flex-direction: column;
+    }
+
+    .movie-info {
+      margin-bottom: 8px;
+      font-size: 14px;
+
+      &__rating {
+        padding: 1px 8px;
+        font-size: 12px;
+
+        & > svg {
+          @include m-set-size(10px, 10px);
+        }
+      }
+    }
+
+    &__message {
+      align-self: center;
+      padding: 10px;
+    }
+
+    .card {
+      @include m-set-transition(border);
+      border: 1px solid transparent;
+      border-radius: 6px;
+
+      &__link {
+        gap: 16px;
+        padding: 20px 8px;
+      }
+
+      &__poster > img {
+        @include m-set-size(40px, 52px);
+      }
+
+      &__title {
+        @include m-set-font(18px, 700, 133%);
+      }
+
+      &:hover {
+        border-color: $color-white-a50;
+      }
+
+      &:focus-within {
+        border-color: $color-white-a50;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-width-laptop) {
+  .search-movies {
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .search-movies {
+    padding: 20px;
+
+    .dropdown-menu {
+      padding: 24px 20px;
+
+      .movie-info {
+        flex-wrap: wrap;
+      }
+
+      &__list {
+        gap: 16px;
+        flex-direction: row;
+      }
+
+      .card {
+        padding: 0;
+        width: 220px;
+
+        &__link {
+          flex-direction: column;
+        }
+
+        &__poster {
+          & > img {
+            @include m-set-size(158px, 206px);
+          }
+        }
+      }
+    }
+  }
+}

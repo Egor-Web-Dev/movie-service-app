@@ -1,0 +1,30 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.form-field {
+  width: 340px;
+
+  .field__label {
+    & > svg > path {
+      fill: $color-black-a40;
+    }
+  }
+
+  &--error {
+    border-color: $color-content-error !important;
+
+    .field__label > svg > path {
+      fill: $color-content-error !important;
+    }
+  }
+}
+
+.validation-message {
+  color: $color-content-error;
+}
+
+@media (max-width: $media-width-tablet) {
+  .form-field {
+    max-width: 295px;
+  }
+}

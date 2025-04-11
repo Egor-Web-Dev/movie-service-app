@@ -1,0 +1,27 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.scroll-btn {
+  position: fixed;
+  left: 50%;
+  bottom: 5%;
+  gap: 10px;
+  align-items: center;
+  border-radius: 24px;
+  transform: translate(-50%, 0);
+  opacity: 0.8;
+
+  & > svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .scroll-btn {
+    padding: 10px 16px;
+
+    & > svg {
+      @include m-set-size(18px, 18px);
+    }
+  }
+}

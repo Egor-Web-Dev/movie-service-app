@@ -1,0 +1,90 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: none;
+  font-family: "Play";
+}
+
+body {
+  @include m-set-font(18px, 400);
+  min-height: 100vh;
+  color: $color-white;
+  background: $background-primary;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.heading-1 {
+  @include m-set-font(48px, 700, 116%);
+  margin-bottom: 64px;
+}
+
+.heading-2 {
+  @include m-set-font(40px, 700, 120%);
+  margin-bottom: 64px;
+}
+
+.heading-3 {
+  @include m-set-font(24px, 700, 120%);
+  margin-bottom: 24px;
+}
+
+.section-padding-block {
+  padding-block: 64px 160px;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.mobile-content {
+  display: none;
+}
+
+@media (max-width: $media-width-tablet) {
+  .heading-1 {
+    margin-bottom: 40px;
+    font-size: 36px;
+  }
+
+  .heading-2 {
+    margin-bottom: 40px;
+    font-size: 24px;
+  }
+
+  .section-padding-block {
+    padding-block: 16px 40px;
+  }
+
+  .desktop-content {
+    display: none;
+  }
+
+  .mobile-content {
+    display: flex;
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .heading-1 {
+    font-size: 24px;
+  }
+}

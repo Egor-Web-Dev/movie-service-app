@@ -1,0 +1,39 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.genres-list {
+  @include m-set-font(24px, 700, 133%);
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.genre-card {
+  @include m-set-transition(filter, border-color, box-shadow);
+  border: 1px solid $color-white-a25;
+  border-radius: $border-radius-24;
+  box-shadow: 0 0 80px $color-white-a33;
+
+  &__poster {
+    & > img {
+      @include m-set-size(100%, 220px);
+      border-top-left-radius: $border-radius-24;
+      border-top-right-radius: $border-radius-24;
+      object-fit: cover;
+    }
+  }
+
+  &__genre-name {
+    padding-block: 22px 30px;
+    border-bottom-left-radius: $border-radius-24;
+    border-bottom-right-radius: $border-radius-24;
+    text-align: center;
+    background-color: $color-black;
+  }
+
+  &:hover {
+    @include m-set-card-hover;
+  }
+
+  &:focus-within {
+    @include m-set-card-focus;
+  }
+}

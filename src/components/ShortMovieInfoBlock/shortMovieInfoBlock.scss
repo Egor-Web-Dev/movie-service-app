@@ -1,0 +1,44 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.movie-info {
+  gap: 10px;
+  align-items: center;
+  font-size: 18px;
+  color: $color-white-a70;
+
+  &__rating {
+    align-items: center;
+    padding: 7px 13px;
+    border-radius: 16px;
+    font-weight: 700;
+    color: $color-white;
+
+    & > svg {
+      @include m-set-size(16px, 16px);
+      margin-right: 4px;
+    }
+
+    &--green {
+      background-color: $color-green-rating;
+    }
+
+    &--red {
+      background-color: $color-red-rating;
+    }
+
+    &--gold {
+      background-color: $color-gold-rating;
+    }
+
+    &--gray {
+      background-color: $color-gray;
+    }
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .movie-info {
+    font-size: 14px;
+  }
+}

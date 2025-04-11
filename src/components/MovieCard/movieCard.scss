@@ -1,0 +1,29 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.movie-card {
+  @include m-set-transition(filter, border-color, box-shadow);
+  position: relative;
+  height: 336px;
+  border: 1px solid $color-white-a25;
+  border-radius: $border-radius-16;
+  box-shadow: 0 0 45px $color-white-a33;
+
+  & > a {
+    @include m-full-screen;
+    display: block;
+  }
+
+  &:hover {
+    @include m-set-card-hover;
+  }
+
+  &:focus-within {
+    @include m-set-card-focus;
+  }
+
+  &__poster {
+    @include m-full-screen;
+    border-radius: $border-radius-16;
+  }
+}

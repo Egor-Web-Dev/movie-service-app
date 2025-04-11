@@ -1,0 +1,57 @@
+@use "./variables" as *;
+
+@mixin m-set-bg-color($border-color, $bg-color) {
+  border-color: $border-color;
+  background-color: $bg-color;
+}
+
+@mixin m-set-size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin m-set-max-width($width) {
+  width: 100%;
+  max-width: $width;
+}
+
+@mixin m-set-font($size, $weight, $line-height: 100%) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $line-height;
+}
+
+@mixin m-reset-margins {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin m-full-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin m-full-screen {
+  @include m-set-size(100%, 100%);
+}
+
+@mixin m-set-card-hover {
+  box-shadow: 0 0 15px $color-white-a33;
+  filter: contrast(115%);
+}
+
+@mixin m-set-card-focus {
+  @include m-set-card-hover;
+  border-color: $color-white;
+}
+
+@mixin m-set-transition($properties...) {
+  transition: {
+    duration: $transition-duration;
+    property: $properties;
+    timing-function: ease-in-out;
+  }
+}

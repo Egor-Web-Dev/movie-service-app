@@ -1,0 +1,64 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.user-details {
+  &__content {
+    gap: 40px;
+    flex-direction: column;
+    margin-bottom: 64px;
+  }
+
+  .detail {
+    gap: 16px;
+    align-items: center;
+
+    &__icon {
+      @include m-set-font(24px, 700, 133%);
+      @include m-set-size(60px, 60px);
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      background-color: $color-white-a50;
+
+      & > svg > path {
+        fill: $color-white;
+      }
+    }
+
+    &__right {
+      flex-direction: column;
+    }
+
+    &__value {
+      @include m-set-font(24px, 700, 133%);
+    }
+  }
+
+  &__logout {
+    width: 100%;
+    max-width: 262px;
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .user-details {
+    &__content {
+      margin-bottom: 40px;
+    }
+
+    .detail {
+      &__icon {
+        @include m-set-size(48px, 48px);
+      }
+
+      &__text {
+        font-size: 14px;
+        color: $color-white-a50;
+      }
+
+      &__value {
+        font-size: 18px;
+      }
+    }
+  }
+}

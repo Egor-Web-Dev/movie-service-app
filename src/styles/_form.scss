@@ -1,0 +1,21 @@
+@use "./variables" as *;
+
+.form {
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.fieldset {
+  gap: 12px;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 24px;
+  border: none;
+}
+
+.auth-error {
+  margin-bottom: 10px;
+  color: $color-content-error;
+  text-align: center;
+}

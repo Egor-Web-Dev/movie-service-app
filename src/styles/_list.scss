@@ -1,0 +1,51 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+
+.list-reset {
+  list-style: none;
+}
+
+.list {
+  gap: 64px 40px;
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+
+  &__item {
+    width: 100%;
+  }
+}
+
+.vertical-scrolling-list {
+  @extend .list;
+}
+
+.horizontal-scrolling-list {
+  @extend .list;
+}
+
+@media (max-width: $media-width-tablet) {
+  .horizontal-scrolling-list {
+    grid-auto-flow: column;
+    grid-auto-columns: 224px;
+    margin: -50px 0 0 (-$container-padding-tablet);
+    padding: 50px $container-padding-tablet 65px $container-padding-tablet;
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .vertical-scrolling-list {
+    gap: 36px;
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .horizontal-scrolling-list {
+    margin-left: -$container-padding-mobile;
+    padding-inline: $container-padding-mobile;
+  }
+
+  .vertical-scrolling-list {
+    gap: 24px;
+  }
+}

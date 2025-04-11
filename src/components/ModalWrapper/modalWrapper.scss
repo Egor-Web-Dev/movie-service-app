@@ -1,0 +1,48 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.modal-wrapper {
+  position: relative;
+
+  &__close-btn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: -71px;
+    padding: 12px;
+    border-radius: $border-radius-24;
+    background-color: $color-white;
+
+    & > svg > path {
+      fill: $color-black;
+    }
+
+    &:hover {
+      background-color: $content-active;
+    }
+
+    &:focus-visible {
+      background-color: $content-active;
+    }
+
+    &:active {
+      background-color: $color-gray;
+    }
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .modal-wrapper {
+    &__close-btn {
+      padding: 8px;
+      top: 8px;
+      right: 8px;
+    }
+
+    &:focus-within {
+      .close-btn {
+        display: flex;
+      }
+    }
+  }
+}
