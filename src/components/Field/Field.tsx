@@ -1,17 +1,15 @@
-import "./field.scss";
+import styles from "./field.module.scss";
 import { FC } from "react";
 import type InputProps from "../../types/InputProps";
 
-const FIELD_CLASS_NAME = "field";
-
 export const Field: FC<InputProps> = (props) => {
   return (
-    <div className={`${props.className} ${FIELD_CLASS_NAME} flex`}>
-      <label className={`${FIELD_CLASS_NAME}__label flex`} htmlFor={props.id}>
+    <div className={`${props.className} ${styles.field} flex`}>
+      <label className={`${styles.field__label} flex`} htmlFor={props.id}>
         {props.icon}
       </label>
 
-      <input {...props} className={`${FIELD_CLASS_NAME}__input`} />
+      <input {...{ ...props, icon: null }} className={styles.field__input} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import "./registerForm.scss";
+import styles from "./registerForm.module.scss";
 import { z } from "zod";
 import { Button } from "../Button";
 import { FC, useState } from "react";
@@ -10,8 +10,6 @@ import IconUser from "../Icon/User.svg?react";
 import IconEnvelope from "../Icon/Envelope.svg?react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-
-const FORM_CLASS_NAME = "register-form";
 
 type FormProps = {
   onSubmitSuccess: () => void;
@@ -32,11 +30,11 @@ const ValidationSchema = z
   });
 
 export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
-  const [validateOnChange, setValidateOnChange] = useState(false);
+  const [isValidateOnChange, setValidateOnChange] = useState(false);
 
   return (
     <>
-      <h3 className={`${FORM_CLASS_NAME}__title heading-3`}>Регистрация</h3>
+      <h3 className={`${styles.registerForm__title} heading-3`}>Регистрация</h3>
 
       <Formik
         initialValues={{
@@ -48,7 +46,7 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
         }}
         validationSchema={toFormikValidationSchema(ValidationSchema)}
         validateOnBlur={false}
-        validateOnChange={validateOnChange}
+        validateOnChange={isValidateOnChange}
         onSubmit={(values, { setSubmitting, setStatus }) => {
           const requestData = {
             ...values,
@@ -65,10 +63,9 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
         }}
       >
         {({ isSubmitting, status }) => (
-          <Form className={`${FORM_CLASS_NAME} form flex`} noValidate>
+          <Form className={`${styles.registerForm} form flex`} noValidate>
             <fieldset className="fieldset flex">
               <FormField
-                className={`${FORM_CLASS_NAME}__email`}
                 id="email"
                 type="email"
                 name="email"
@@ -78,7 +75,6 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
               />
 
               <FormField
-                className={`${FORM_CLASS_NAME}__name`}
                 id="name"
                 type="text"
                 name="name"
@@ -87,7 +83,6 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
               />
 
               <FormField
-                className={`${FORM_CLASS_NAME}__surname`}
                 id="surname"
                 type="text"
                 name="surname"
@@ -96,7 +91,6 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
               />
 
               <FormField
-                className={`${FORM_CLASS_NAME}__password`}
                 id="password"
                 type="password"
                 name="password"
@@ -105,7 +99,6 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
               />
 
               <FormField
-                className={`${FORM_CLASS_NAME}__confirm-password`}
                 id="confirm-password"
                 type="password"
                 name="confirm"
@@ -117,7 +110,7 @@ export const RegisterForm: FC<FormProps> = ({ onSubmitSuccess }) => {
             {status && <p className="auth-error">{status.error}</p>}
 
             <Button
-              className={`${FORM_CLASS_NAME}__submit-btn`}
+              className="register-btn"
               kind="primary"
               type="submit"
               isLoading={isSubmitting}

@@ -1,12 +1,10 @@
-import "./authModal.scss";
+import styles from "./authModal.module.scss";
 import { Logo } from "../Logo";
 import { Button } from "../Button";
 import { useState, FC } from "react";
 import { LoginForm } from "../LoginForm";
 import { RegisterForm } from "../RegisterForm";
 import { ModalWrapper } from "../ModalWrapper";
-
-const BLOCK_CLASS_NAME = "auth-modal";
 
 type ModalSuccessProps = {
   handler: () => void;
@@ -21,12 +19,12 @@ export const AuthModal = () => {
   const setRegisterForm = () => setModalType("register");
   const setSuccessModal = () => setModalType("success");
 
-  const getSwitchFormButton = (text: string, handler: () => void) => {
+  const getSwitchFormButton = (text: string, onClick: () => void) => {
     return (
       <Button
-        className={`${BLOCK_CLASS_NAME}__switch-btn`}
+        className={styles.authModal__switchBtn}
         kind="default"
-        onClick={handler}
+        onClick={onClick}
       >
         {text}
       </Button>
@@ -35,8 +33,8 @@ export const AuthModal = () => {
 
   return (
     <ModalWrapper>
-      <div className={`${BLOCK_CLASS_NAME} flex`}>
-        <Logo isBlack={true} />
+      <div className={`${styles.authModal} flex`}>
+        <Logo className={styles.authModal__logo} isBlack />
 
         {modalType === "register" && (
           <>
@@ -59,16 +57,20 @@ export const AuthModal = () => {
 };
 
 const ModalSuccess: FC<ModalSuccessProps> = ({ handler }) => {
-  const className = "register-success";
-
   return (
-    <div className={`${BLOCK_CLASS_NAME}__register-success ${className} flex`}>
-      <h3 className={`${className}__title heading-3`}>Регистрация завершена</h3>
-      <p className={`${className}__text`}>
+    <div className={`${styles.registerSuccess} flex`}>
+      <h3 className={`${styles.registerSuccess__title} heading-3`}>
+        Регистрация завершена
+      </h3>
+      <p className={styles.registerSuccess__text}>
         Используйте вашу электронную почту для входа
       </p>
 
-      <Button className={`${className}__btn`} kind="primary" onClick={handler}>
+      <Button
+        className={styles.registerSuccess__enter}
+        kind="primary"
+        onClick={handler}
+      >
         Войти
       </Button>
     </div>

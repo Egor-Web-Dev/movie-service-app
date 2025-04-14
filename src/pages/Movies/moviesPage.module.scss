@@ -1,0 +1,68 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.movies {
+  &__content {
+    flex-direction: column;
+  }
+
+  &__titleLink {
+    @include m-set-transition(color);
+    align-items: center;
+    width: max-content;
+
+    & > svg {
+      margin-right: 17px;
+
+      & > path {
+        @include m-set-transition(fill);
+      }
+    }
+
+    &:hover {
+      color: $content-active;
+
+      & > svg > path {
+        fill: $content-active;
+      }
+    }
+
+    &:focus-visible {
+      color: $content-active;
+
+      & > svg > path {
+        fill: $content-active;
+      }
+    }
+
+    &:active {
+      color: $color-white-a33;
+
+      & > svg > path {
+        fill: $color-white-a33;
+      }
+    }
+  }
+
+  &__list {
+    margin-bottom: 64px;
+  }
+
+  &__moreBtn {
+    align-self: center;
+    width: 100%;
+    max-width: 218px;
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .movies {
+    &__list {
+      align-items: center;
+    }
+
+    &__movieCard {
+      height: 502px;
+    }
+  }
+}

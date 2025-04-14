@@ -1,22 +1,21 @@
-import "./MovieCard.scss";
+import styles from "./movieCard.module.scss";
 import { Link } from "react-router";
-import { FC, memo, ReactNode } from "react";
 import type Movie from "../../types/Movie";
+import { FC, memo, ReactNode } from "react";
 import missingImage from "../../assets/images/missing-image.webp";
 
-const CARD_CLASS_NAME = "movie-card";
-
 type Props = {
+  className: string;
   movie: Movie;
   children?: ReactNode;
 };
 
-export const MovieCard: FC<Props> = memo(({ movie, children }) => {
+export const MovieCard: FC<Props> = memo(({ className, movie, children }) => {
   return (
-    <article className={CARD_CLASS_NAME}>
+    <article className={`${styles.movieCard} ${className}`}>
       <Link to={`/movie/${movie.id}`} state={movie}>
         <img
-          className={`${CARD_CLASS_NAME}__poster`}
+          className={styles.movieCard__poster}
           src={movie.posterUrl || missingImage}
           loading="lazy"
           alt="Постер фильма"

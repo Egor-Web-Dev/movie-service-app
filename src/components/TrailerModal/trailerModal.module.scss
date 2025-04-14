@@ -1,0 +1,47 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.trailerModal {
+  @include m-set-size(960px, 540px);
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 20px;
+  border: 1px solid $color-white-a50;
+  background-color: $color-secondary;
+
+  &__video {
+    @include m-full-absolute;
+    @include m-full-screen;
+  }
+}
+
+@media (max-width: $media-width-laptop) {
+  .trailerModal {
+    @include m-set-size(812px, 459px);
+  }
+}
+
+@media (min-device-width: 320px) and (max-device-width: 375px) {
+  .trailerModal {
+    @include m-set-size(320px, 180px);
+  }
+}
+
+@media (min-device-width: 375px) and (max-device-width: 512px) {
+  .trailerModal {
+    @include m-set-size(375px, 212px);
+  }
+}
+
+@media (min-device-width: 512px) and (max-device-width: 663px) {
+  .trailerModal {
+    @include m-set-size(512px, 290px);
+  }
+}
+
+@media (min-device-width: 663px) and (max-device-width: $media-width-tablet) {
+  .trailerModal {
+    @include m-set-size(663px, 375px);
+  }
+}

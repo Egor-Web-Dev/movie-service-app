@@ -5,7 +5,6 @@ interface InputProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  className: string;
   icon: ReactNode;
   type?: "text" | "password" | "number" | "email" | "search";
 }

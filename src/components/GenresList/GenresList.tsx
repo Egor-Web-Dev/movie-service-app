@@ -1,12 +1,9 @@
-import "./genresList.scss";
+import styles from "./genresList.module.scss";
 import { FC } from "react";
 import { Link } from "react-router";
 import fetchGenres from "../../api/fetchGenres";
 import getGenreImage from "../../assets/images/genres";
 import { useSuspenseQuery } from "@tanstack/react-query";
-
-const LIST_CLASS_NAME = "genres-list";
-const CARD_CLASS_NAME = "genre-card";
 
 type GenreCardProps = {
   genre: string;
@@ -21,11 +18,11 @@ export const GenresList = () => {
 
   return (
     <ul
-      className={`${LIST_CLASS_NAME} list-reset vertical-scrolling-list grid`}
+      className={`${styles.genresList} list-reset vertical-scrolling-list grid`}
     >
-      {query.data.map((g, i) => (
-        <li className={`${LIST_CLASS_NAME}__item`} key={i}>
-          <GenreCard genre={g} />
+      {query.data.map((genre, i) => (
+        <li key={i}>
+          <GenreCard genre={genre} />
         </li>
       ))}
     </ul>
@@ -34,13 +31,13 @@ export const GenresList = () => {
 
 const GenreCard: FC<GenreCardProps> = ({ genre }) => {
   return (
-    <div className={`${LIST_CLASS_NAME}__card genre-card`}>
+    <div className={styles.genreCard}>
       <Link to={`/genres/${genre}`}>
-        <div className={`${CARD_CLASS_NAME}__poster flex`}>
+        <div className={`${styles.genreCard__poster} flex`}>
           <img src={getGenreImage(genre)} loading="lazy" alt="Логотип жанра" />
         </div>
 
-        <div className={`${CARD_CLASS_NAME}__genre-name`}>{genre}</div>
+        <div className={styles.genreCard__name}>{genre}</div>
       </Link>
     </div>
   );

@@ -1,7 +1,5 @@
-import "./errorBlock.scss";
+import styles from "./errorBlock.module.scss";
 import { FC } from "react";
-
-const BLOCK_CLASS_NAME = "error";
 
 type Props = {
   text: string;
@@ -9,8 +7,8 @@ type Props = {
 
 export const ErrorBlock: FC<Props> = ({ text }) => {
   return (
-    <div className={`${BLOCK_CLASS_NAME} flex`}>
-      <p className={`${BLOCK_CLASS_NAME}__message`}>{`${text}`}</p>
+    <div className={`${styles.error} flex`}>
+      <p>{text}</p>
     </div>
   );
 };

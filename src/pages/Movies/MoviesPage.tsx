@@ -1,56 +1,57 @@
-import "./moviesPage.scss";
+import styles from "./moviesPage.module.scss";
 import { Link } from "react-router";
 import useMovies from "../../hooks/useMovies";
 import { Button } from "../../components/Button";
 import { Loader } from "../../components/Loader";
-import { Section } from "../../components/Section";
+import { Container } from "../../components/Container";
 import { MovieCard } from "../../components/MovieCard";
 import { ErrorBlock } from "../../components/ErrorBlock";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import IconArrowBack from "../../components/Icon/ArrowBack.svg?react";
 
 const DEFAULT_COUNT_MOVIES = 10;
-const SECTION_CLASS_NAME = "movies";
 
 export const MoviesPage = () => {
   const { query, genre } = useMovies(DEFAULT_COUNT_MOVIES);
   const movies = query.data?.pages.flatMap((page) => page.data) || [];
 
+  const handleMoreBtnClick = () => query.fetchNextPage();
+
   return (
-    <Section
-      className={SECTION_CLASS_NAME}
-      optionalClassName="section-padding-block"
-    >
-      <h1 className="heading-1">
-        <Link className={`${SECTION_CLASS_NAME}__link-title flex`} to="/genres">
-          <IconArrowBack />
-          {capitalizeFirstLetter(genre || "Movies")}
-        </Link>
-      </h1>
+    <section className={`${styles.movies} section-padding-block`}>
+      <Container contentClassName={styles.movies__content}>
+        <h1 className="heading-1">
+          <Link className={`${styles.movies__titleLink} flex`} to="/genres">
+            <IconArrowBack />
+            {capitalizeFirstLetter(genre || "Movies")}
+          </Link>
+        </h1>
 
-      {query.error && <ErrorBlock text={query.error.message} />}
-      {query.isLoading && <Loader />}
+        {query.isLoading && <Loader />}
 
-      <ul
-        className={`${SECTION_CLASS_NAME}__list vertical-scrolling-list grid list-reset`}
-      >
-        {movies.map((m) => (
-          <li className={"list__item"} key={m.id}>
-            <MovieCard movie={m} />
-          </li>
-        ))}
-      </ul>
+        {query.error && <ErrorBlock text={query.error.message} />}
 
-      {query.hasNextPage && (
-        <Button
-          className={`${SECTION_CLASS_NAME}__more-btn`}
-          onClick={() => query.fetchNextPage()}
-          kind="primary"
-          isLoading={query.isFetching}
+        <ul
+          className={`${styles.movies__list} vertical-scrolling-list grid list-reset`}
         >
-          Показать ещё
-        </Button>
-      )}
-    </Section>
+          {movies.map((m) => (
+            <li key={m.id}>
+              <MovieCard className={styles.movies__movieCard} movie={m} />
+            </li>
+          ))}
+        </ul>
+
+        {query.hasNextPage && (
+          <Button
+            className={styles.movies__moreBtn}
+            kind="primary"
+            isLoading={query.isFetching}
+            onClick={handleMoreBtnClick}
+          >
+            Показать ещё
+          </Button>
+        )}
+      </Container>
+    </section>
   );
 };

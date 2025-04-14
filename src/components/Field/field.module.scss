@@ -1,0 +1,50 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.field {
+  @include m-set-transition(border-color);
+  position: relative;
+  align-items: center;
+  padding-inline: 16px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  height: 56px;
+  animation: vertical-scaling 0.2s ease-in-out forwards;
+
+  &:focus-within {
+    border-color: $content-active;
+
+    .field__label > svg > path {
+      fill: $content-active;
+    }
+  }
+
+  &__label {
+    align-items: center;
+    margin-right: 12px;
+    height: 100%;
+    cursor: text;
+
+    & > svg > path {
+      @include m-set-transition(fill);
+    }
+  }
+
+  &__input {
+    @include m-full-screen;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    background-color: transparent;
+  }
+}
+
+@keyframes vertical-scaling {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}

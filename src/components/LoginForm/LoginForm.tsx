@@ -12,8 +12,6 @@ import IconKey from "../Icon/Key.svg?react";
 import IconEnvelope from "../Icon/Envelope.svg?react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const FORM_CLASS_NAME = "login-form";
-
 const requiredField = z.string({ required_error: "Заполните поле" }).trim();
 const ValidationSchema = z.object({
   email: requiredField.email({ message: "Некорректный email" }),
@@ -22,14 +20,14 @@ const ValidationSchema = z.object({
 
 export const LoginForm = () => {
   const { closeModal } = useContext(ModalContext);
-  const [validateOnChange, setValidateOnChange] = useState(false);
+  const [isValidateOnChange, setValidateOnChange] = useState(false);
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validationSchema={toFormikValidationSchema(ValidationSchema)}
       validateOnBlur={false}
-      validateOnChange={validateOnChange}
+      validateOnChange={isValidateOnChange}
       onSubmit={(values, { setSubmitting, setStatus }) => {
         login({ ...values })
           .then(() => {
@@ -41,10 +39,9 @@ export const LoginForm = () => {
       }}
     >
       {({ isSubmitting, status }) => (
-        <Form className={`${FORM_CLASS_NAME} form flex`} noValidate>
+        <Form className="form flex" noValidate>
           <fieldset className="fieldset flex">
             <FormField
-              className={`${FORM_CLASS_NAME}__email`}
               id="email-input"
               type="email"
               name="email"
@@ -54,7 +51,6 @@ export const LoginForm = () => {
             />
 
             <FormField
-              className={`${FORM_CLASS_NAME}__password`}
               id="password-input"
               type="password"
               name="password"
@@ -66,11 +62,11 @@ export const LoginForm = () => {
           {status && <p className="auth-error">{status.error}</p>}
 
           <Button
-            onClick={() => setValidateOnChange(true)}
-            className={`${FORM_CLASS_NAME}__submit-btn`}
+            className="submit-btn"
             kind="primary"
             type="submit"
             isLoading={isSubmitting}
+            onClick={() => setValidateOnChange(true)}
           >
             Войти
           </Button>

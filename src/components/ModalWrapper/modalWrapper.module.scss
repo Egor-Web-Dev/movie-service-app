@@ -1,0 +1,42 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.modalWrapper {
+  position: relative;
+
+  &__closeBtn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: -71px;
+    padding: 12px;
+    border-radius: $border-radius-24;
+    background-color: $color-white;
+
+    & > svg > path {
+      fill: $color-black;
+    }
+
+    &:hover {
+      background-color: $content-active;
+    }
+
+    &:focus-visible {
+      background-color: $content-active;
+    }
+
+    &:active {
+      background-color: $color-gray;
+    }
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .modalWrapper {
+    &__closeBtn {
+      padding: 8px;
+      top: 8px;
+      right: 8px;
+    }
+  }
+}

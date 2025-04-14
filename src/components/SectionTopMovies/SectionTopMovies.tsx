@@ -1,10 +1,8 @@
-import "./SectionTopMovies.scss";
-import { Section } from "../Section";
+import styles from "./sectionTopMovies.module.scss";
+import { Container } from "../Container";
 import { MovieCard } from "../MovieCard";
 import fetchTopMovies from "../../api/fetchTopMovies";
 import { useSuspenseQuery } from "@tanstack/react-query";
-
-const SECTION_CLASS_NAME = "top-movies";
 
 export const SectionTopMovies = () => {
   const query = useSuspenseQuery({
@@ -14,24 +12,21 @@ export const SectionTopMovies = () => {
   });
 
   return (
-    <Section className={SECTION_CLASS_NAME}>
-      <h2 className={`${SECTION_CLASS_NAME}__title heading-2`}>
-        Топ 10 фильмов
-      </h2>
-
-      <div className={`${SECTION_CLASS_NAME}__list-wrapper list-wrapper`}>
-        <ul
-          className={`${SECTION_CLASS_NAME}__list horizontal-scrolling-list grid list-reset`}
-        >
-          {query.data.map((movie, i) => (
-            <li className={"list__item"} key={movie.id}>
-              <MovieCard movie={movie}>
-                <span className="movie-number">{i + 1}</span>
-              </MovieCard>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Section>
+    <section className={styles.topMovies}>
+      <Container contentClassName={styles.topMovies__content}>
+        <h2 className="heading-2">Топ 10 фильмов</h2>
+        <div className="list-wrapper">
+          <ul className="horizontal-scrolling-list grid list-reset">
+            {query.data.map((movie, i) => (
+              <li key={movie.id}>
+                <MovieCard className="" movie={movie}>
+                  <span className={styles.movieNumber}>{i + 1}</span>
+                </MovieCard>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
+    </section>
   );
 };

@@ -1,0 +1,130 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../components/Button/button.module.scss";
+
+.hero {
+  padding-top: 32px;
+
+  &__content {
+    align-items: center;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+  }
+
+  &__plot {
+    @include m-set-font(24px, 400, 133%);
+    margin-bottom: 60px;
+    color: $color-white-a70;
+  }
+
+  .movieDescr {
+    padding-right: 20px;
+
+    &__top {
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .buttons {
+    gap: 16px;
+
+    &__openTrailer {
+      width: 171px;
+    }
+
+    &__aboutMovie {
+      @extend .secondaryBtn, .btn;
+      width: 183px;
+    }
+
+    &__likeMovie {
+      &:hover {
+        & > svg > path {
+          fill: red;
+        }
+      }
+
+      &:focus-visible {
+        & > svg > path {
+          fill: red;
+        }
+      }
+    }
+  }
+
+  &__poster {
+    align-self: flex-start;
+    flex-shrink: 0;
+    width: 53%;
+
+    img {
+      @include m-set-size(100%, 552px);
+      border-radius: 16px;
+      object-fit: cover;
+    }
+  }
+}
+
+@media (max-width: $media-width-laptop) {
+  .hero {
+    &__content {
+      align-items: flex-start;
+      flex-direction: column-reverse;
+    }
+
+    .movieDescr {
+      padding-right: 0;
+    }
+
+    &__poster {
+      margin-bottom: 24px;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .hero {
+    padding-top: 0;
+
+    .buttons {
+      &__aboutMovie {
+        width: 147px;
+      }
+    }
+
+    &__poster img {
+      height: 421px;
+    }
+  }
+}
+
+@media (max-width: $media-width-mobile) {
+  .hero {
+    &__plot {
+      margin-bottom: 32px;
+      font-size: 18px;
+    }
+
+    &__poster img {
+      height: 234px;
+    }
+
+    .buttons {
+      gap: 16px 5px;
+      justify-content: space-between;
+
+      &__aboutMovie {
+        width: 100%;
+        max-width: 47%;
+      }
+
+      &__openTrailer {
+        width: 100%;
+      }
+    }
+  }
+}

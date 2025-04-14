@@ -1,12 +1,13 @@
-import "./button.scss";
+import styles from "./button.module.scss";
 import { MoonLoader } from "react-spinners";
 import { FC, MouseEventHandler, ReactNode } from "react";
 
+type Kind = "primary" | "secondary" | "default";
 type Props = {
   className: string;
   children: ReactNode;
   onClick: MouseEventHandler<HTMLButtonElement>;
-  kind: "primary" | "secondary" | "default";
+  kind: Kind;
   type?: "button" | "submit";
   isLoading?: boolean;
   title?: string;
@@ -23,7 +24,7 @@ export const Button: FC<Props> = ({
 }) => {
   return (
     <button
-      className={`${className} ${kind}-btn btn flex`}
+      className={`${className} ${getClassName(kind)} ${styles.btn} flex`}
       type={type}
       onClick={onClick}
       title={title}
@@ -31,4 +32,15 @@ export const Button: FC<Props> = ({
       {isLoading ? <MoonLoader size={24} color="#fff" /> : children}
     </button>
   );
+};
+
+const getClassName = (kind: Kind) => {
+  switch (kind) {
+    case "primary":
+      return styles.primaryBtn;
+    case "secondary":
+      return styles.secondaryBtn;
+    default:
+      return styles.defaultBtn;
+  }
 };

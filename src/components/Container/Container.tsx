@@ -1,17 +1,15 @@
-import "./container.scss";
+import styles from "./container.module.scss";
 import { FC, ReactNode } from "react";
 
-export { Container };
-
 type Props = {
-  sectionClassName: string;
+  contentClassName: string;
   children: ReactNode;
 };
 
-const Container: FC<Props> = ({ sectionClassName, children }) => {
+export const Container: FC<Props> = ({ contentClassName, children }) => {
   return (
-    <div className="container">
-      <div className={`${sectionClassName}__content flex`}>{children}</div>
+    <div className={styles.container}>
+      <div className={`${contentClassName} flex`}>{children}</div>
     </div>
   );
 };

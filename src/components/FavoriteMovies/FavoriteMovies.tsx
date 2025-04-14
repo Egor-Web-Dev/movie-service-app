@@ -1,4 +1,4 @@
-import "./FavoriteMovies.scss";
+import styles from "./favoriteMovies.module.scss";
 import { Loader } from "../Loader";
 import { Button } from "../Button";
 import Movie from "../../types/Movie";
@@ -9,8 +9,6 @@ import IconClose from "../Icon/Close.svg?react";
 import { useQuery } from "@tanstack/react-query";
 import deleteFavoriteMovie from "../../api/deleteFavoriteMovie";
 import fetchFavoriteMovies from "../../api/fetchFavoriteMovies";
-
-const BLOCK_CLASS_NAME = "favorites";
 
 export const FavoriteMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -31,20 +29,18 @@ export const FavoriteMovies = () => {
   };
 
   return (
-    <div className={`account__favorites ${BLOCK_CLASS_NAME}`}>
+    <div className={styles.favorites}>
       {(query.isLoading || query.isFetching) && <Loader />}
       {query.error && <ErrorBlock text={query.error.message} />}
 
       {query.isSuccess && !query.isFetching && (
-        <div className={`${BLOCK_CLASS_NAME}__list-wrapper list-wrapper`}>
-          <ul
-            className={`${BLOCK_CLASS_NAME}__list horizontal-scrolling-list grid list-reset`}
-          >
+        <div className="list-wrapper">
+          <ul className="horizontal-scrolling-list grid list-reset">
             {movies.map((m) => (
-              <li className="list__item" key={m.id}>
-                <MovieCard movie={m}>
+              <li key={m.id}>
+                <MovieCard className={styles.favorites__movieCard} movie={m}>
                   <Button
-                    className={`${BLOCK_CLASS_NAME}__delete-btn`}
+                    className={styles.favorites__deleteBtn}
                     kind="secondary"
                     onClick={handleDeleteBtnClick(m.id)}
                   >

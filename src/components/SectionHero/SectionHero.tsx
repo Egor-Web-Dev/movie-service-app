@@ -1,24 +1,22 @@
-import "./sectionHero.scss";
+import styles from "./sectionHero.module.scss";
 import { Button } from "../Button";
 import { Link } from "react-router";
-import { Section } from "../Section";
 import { FC, useContext } from "react";
+import { Container } from "../Container";
 import type User from "../../types/User";
 import type Movie from "../../types/Movie";
 import { RootState } from "../../store/store";
 import { ModalContext } from "../ModalProvider";
 import { useDispatch, useSelector } from "react-redux";
 import addFavoriteMovie from "../../api/addFavoriteMovie";
-import { addMovie, deleteMovie } from "../../store/userSlice";
-import deleteFavoriteMovie from "../../api/deleteFavoriteMovie";
 import IconRandom from "../Icon/Random.svg?react";
 import IconHeartActive from "../Icon/HeartActive.svg?react";
 import IconHeartInactive from "../Icon/HeartInactive.svg?react";
 import missingPoster from "../../assets/images/missing-poster.webp";
+import { addMovie, deleteMovie } from "../../store/userSlice";
+import deleteFavoriteMovie from "../../api/deleteFavoriteMovie";
+import { MovieShortInfo } from "../MovieShortInfo/MovieShortInfo";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ShortMovieInfoBlock } from "../ShortMovieInfoBlock/ShortMovieInfoBlock";
-
-const SECTION_CLASS_NAME = "hero";
 
 type SectionProps = {
   movie: Movie;
@@ -53,64 +51,65 @@ export const SectionHero: FC<SectionProps> = ({ movie, isRandomMovie }) => {
     queryClient.invalidateQueries({ queryKey: ["random", "movie"] });
   };
 
-  const getElementClassName = () => (isRandomMovie ? "flex-wrap" : "");
-
   return (
-    <Section className={SECTION_CLASS_NAME}>
-      <div className={`${SECTION_CLASS_NAME}__movie-descr`}>
-        <ShortMovieInfoBlock movie={movie} />
+    <section className={styles.hero}>
+      <Container contentClassName={styles.hero__content}>
+        <div className={styles.movieDescr}>
+          <MovieShortInfo className={styles.movieDescr__top} movie={movie} />
 
-        <h1 className={`${SECTION_CLASS_NAME}__title heading-1`}>
-          {movie.title}
-        </h1>
-        <p className={`${SECTION_CLASS_NAME}__plot`}>{movie.plot}</p>
+          <h1 className={`${styles.hero__title} heading-1`}>{movie.title}</h1>
 
-        <div
-          className={`${SECTION_CLASS_NAME}__buttons buttons flex ${getElementClassName()}`.trim()}
-        >
-          <Button
-            className="buttons__open-trailer"
-            kind="primary"
-            onClick={handleShowTrailerClick}
+          <p className={styles.hero__plot}>{movie.plot}</p>
+
+          <div
+            className={`${styles.buttons} flex ${
+              isRandomMovie ? "flex-wrap" : ""
+            }`}
           >
-            Трейлер
-          </Button>
-
-          {isRandomMovie && (
-            <Link
-              className={`buttons__about-movie secondary-btn btn flex`}
-              to={`movie/${movie.id}`}
-              state={movie}
-            >
-              О фильме
-            </Link>
-          )}
-
-          <Button
-            className="buttons__like-movie"
-            kind="secondary"
-            title="Нравится"
-            onClick={handleLikeClick}
-          >
-            {isFavorite ? <IconHeartActive /> : <IconHeartInactive />}
-          </Button>
-
-          {isRandomMovie && (
             <Button
-              className="buttons__random-movie"
-              kind="secondary"
-              title="Случайный фильм"
-              onClick={handleRandomMovieClick}
+              className={styles.buttons__openTrailer}
+              kind="primary"
+              onClick={handleShowTrailerClick}
             >
-              <IconRandom />
+              Трейлер
             </Button>
-          )}
-        </div>
-      </div>
 
-      <div className={`${SECTION_CLASS_NAME}__poster flex`}>
-        <img src={movie.backdropUrl || missingPoster} alt="Постер фильма" />
-      </div>
-    </Section>
+            {isRandomMovie && (
+              <Link
+                className={`${styles.buttons__aboutMovie} flex`}
+                to={`movie/${movie.id}`}
+                state={movie}
+              >
+                О фильме
+              </Link>
+            )}
+
+            <Button
+              className={styles.buttons__likeMovie}
+              kind="secondary"
+              title="Нравится"
+              onClick={handleLikeClick}
+            >
+              {isFavorite ? <IconHeartActive /> : <IconHeartInactive />}
+            </Button>
+
+            {isRandomMovie && (
+              <Button
+                className=""
+                kind="secondary"
+                title="Случайный фильм"
+                onClick={handleRandomMovieClick}
+              >
+                <IconRandom />
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <div className={`${styles.hero__poster} flex`}>
+          <img src={movie.backdropUrl || missingPoster} alt="Постер фильма" />
+        </div>
+      </Container>
+    </section>
   );
 };

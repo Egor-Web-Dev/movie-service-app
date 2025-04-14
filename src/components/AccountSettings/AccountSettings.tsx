@@ -1,4 +1,4 @@
-import "./accountSettings.scss";
+import styles from "./accountSettings.module.scss";
 import { Button } from "../Button";
 import { FC, ReactNode } from "react";
 import logout from "../../api/logout";
@@ -9,8 +9,6 @@ import { setUser } from "../../store/userSlice";
 import Envelope from "../Icon/Envelope.svg?react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate, useOutletContext } from "react-router";
-
-const BLOCK_CLASS_NAME = "user-details";
 
 type UserDetailProps = {
   text: string;
@@ -34,9 +32,11 @@ export const AccountSettings = () => {
     },
   });
 
+  const handleLogoutClick = () => mutate();
+
   return (
-    <div className={`account__user-details ${BLOCK_CLASS_NAME}`}>
-      <div className={`${BLOCK_CLASS_NAME}__content flex`}>
+    <div className={styles.userDetails}>
+      <div className={`${styles.userDetails__content} flex`}>
         <UserDetail
           text="Имя Фамилия"
           value={`${user.name} ${user.surname}`}
@@ -53,9 +53,9 @@ export const AccountSettings = () => {
       {error && <ErrorBlock text={error.message} />}
 
       <Button
-        className={`${BLOCK_CLASS_NAME}__logout`}
+        className={styles.userDetails__logout}
         kind="primary"
-        onClick={() => mutate()}
+        onClick={handleLogoutClick}
         isLoading={isPending}
       >
         Выйти из аккаунта
@@ -65,14 +65,12 @@ export const AccountSettings = () => {
 };
 
 const UserDetail: FC<UserDetailProps> = ({ text, value, icon }) => {
-  const componentClassName = "detail";
-
   return (
-    <div className={`${BLOCK_CLASS_NAME}__detail ${componentClassName} flex`}>
-      <div className={`${componentClassName}__icon flex`}>{icon}</div>
-      <div className={`${componentClassName}__right flex`}>
-        <span className={`${componentClassName}__text`}>{text}</span>
-        <span className={`${componentClassName}__value`}>{value}</span>
+    <div className={`${styles.detail} flex`}>
+      <div className={`${styles.detail__icon} flex`}>{icon}</div>
+      <div className={`${styles.detail__right} flex`}>
+        <span className={styles.detail__text}>{text}</span>
+        <span className={styles.detail__value}>{value}</span>
       </div>
     </div>
   );

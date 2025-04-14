@@ -1,0 +1,27 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.topMovies {
+  padding-block: 40px 120px;
+
+  &__content {
+    display: block;
+  }
+
+  .movieNumber {
+    @include m-set-font(24px, 700, 133%);
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    padding: 8px 24px;
+    border-radius: 50px;
+    color: $color-blue-text;
+    background-color: $color-white;
+  }
+}
+
+@media (max-width: $media-width-tablet) {
+  .topMovies {
+    padding-block: 40px 0;
+  }
+}

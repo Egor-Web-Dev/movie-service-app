@@ -1,13 +1,8 @@
-import "./SectionMovieDetails.scss";
+import styles from "./sectionMovieDetails.module.scss";
 import { FC } from "react";
-import { Section } from "../Section";
+import { Container } from "../Container";
 import type Movie from "../../types/Movie";
 
-const SECTION_CLASS_NAME = "about-movie";
-const DETAILS_BLOCK_CLASS_NAME = "details";
-const ITEM_CLASS_NAME = `${DETAILS_BLOCK_CLASS_NAME}__item`;
-const ITEM_TEXT_CLASS_NAME = `${DETAILS_BLOCK_CLASS_NAME}__item-text`;
-const ITEM_VALUE_CLASS_NAME = `${DETAILS_BLOCK_CLASS_NAME}__item-value`;
 const NO_INFORMATION = "Нет информации";
 
 type SectionProps = {
@@ -21,37 +16,40 @@ type DetailProps = {
 
 export const SectionMovieDetails: FC<SectionProps> = ({ movie }) => {
   return (
-    <Section className={SECTION_CLASS_NAME}>
-      <h2 className={`${SECTION_CLASS_NAME}__title heading-2`}>О фильме</h2>
+    <section className={styles.aboutMovie}>
+      <Container contentClassName={styles.aboutMovie__content}>
+        <h2 className="heading-2">О фильме</h2>
 
-      <div
-        className={`${SECTION_CLASS_NAME}__details ${DETAILS_BLOCK_CLASS_NAME} flex`}
-      >
-        <MovieDetail text="Язык оригинала" value={movie.language} />
-        <MovieDetail text="Бюджет" value={movie.budget || NO_INFORMATION} />
-        <MovieDetail text="Выручка" value={movie.revenue || NO_INFORMATION} />
-        <MovieDetail text="Режиссёр" value={movie.director || NO_INFORMATION} />
-        <MovieDetail
-          text="Продакшен"
-          value={movie.production || NO_INFORMATION}
-        />
-        <MovieDetail
-          text="Награды"
-          value={movie.awardsSummary || NO_INFORMATION}
-        />
-      </div>
-    </Section>
+        <div className={`${styles.details} flex`}>
+          <MovieDetail text="Язык оригинала" value={movie.language} />
+          <MovieDetail text="Бюджет" value={movie.budget || NO_INFORMATION} />
+          <MovieDetail text="Выручка" value={movie.revenue || NO_INFORMATION} />
+          <MovieDetail
+            text="Режиссёр"
+            value={movie.director || NO_INFORMATION}
+          />
+          <MovieDetail
+            text="Продакшен"
+            value={movie.production || NO_INFORMATION}
+          />
+          <MovieDetail
+            text="Награды"
+            value={movie.awardsSummary || NO_INFORMATION}
+          />
+        </div>
+      </Container>
+    </section>
   );
 };
 
 const MovieDetail: FC<DetailProps> = ({ text, value }) => {
   return (
-    <div className={`${ITEM_CLASS_NAME} flex`}>
-      <div className={`${ITEM_TEXT_CLASS_NAME} flex`}>
+    <div className={`${styles.details__item} flex`}>
+      <div className={`${styles.details__text} flex`}>
         <span>{text}</span>
-        <div className="dash-line"></div>
+        <div className={styles.dashLine}></div>
       </div>
-      <span className={ITEM_VALUE_CLASS_NAME}>{value}</span>
+      <span className={styles.details__value}>{value}</span>
     </div>
   );
 };

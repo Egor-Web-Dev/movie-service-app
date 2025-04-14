@@ -1,4 +1,4 @@
-import "./scrollUpButton.scss";
+import styles from "./scrollUpButton.module.scss";
 import { Button } from "../Button";
 import { useState, useEffect } from "react";
 import throttle from "../../utils/throttle";
@@ -28,7 +28,11 @@ export const ScrollUpButton = () => {
 
   return (
     isVisible && (
-      <Button className="scroll-btn flex" kind="primary" onClick={scrollUp}>
+      <Button
+        className={`${styles.scrollBtn} flex`}
+        kind="primary"
+        onClick={scrollUp}
+      >
         <IconArrowBack /> <span>Наверх</span>
       </Button>
     )

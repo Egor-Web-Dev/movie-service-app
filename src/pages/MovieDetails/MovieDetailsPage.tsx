@@ -12,6 +12,7 @@ type PageContentProps = {
 
 export const MovieDetailsPage = () => {
   const movie = useLocation().state as Movie;
+
   return movie ? (
     <PageContent movie={movie} />
   ) : (

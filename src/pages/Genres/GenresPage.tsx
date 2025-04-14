@@ -1,22 +1,19 @@
-import "./genresPage.scss";
+import styles from "./genresPage.module.scss";
 import { Suspense } from "react";
 import { Loader } from "../../components/Loader";
-import { Section } from "../../components/Section";
+import { Container } from "../../components/Container";
 import { GenresList } from "../../components/GenresList";
-
-const PAGE_CLASS_NAME = "genres";
 
 export const GenresPage = () => {
   return (
-    <Section
-      className={PAGE_CLASS_NAME}
-      optionalClassName="section-padding-block"
-    >
-      <h1 className={`${PAGE_CLASS_NAME}__title heading-1`}>Жанры фильмов</h1>
+    <section className={`${styles.genres} section-padding-block`}>
+      <Container contentClassName={styles.genres__content}>
+        <h1 className="heading-1">Жанры фильмов</h1>
 
-      <Suspense fallback={<Loader />}>
-        <GenresList />
-      </Suspense>
-    </Section>
+        <Suspense fallback={<Loader />}>
+          <GenresList />
+        </Suspense>
+      </Container>
+    </section>
   );
 };
