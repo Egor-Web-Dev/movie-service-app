@@ -4,7 +4,7 @@ function throttle<T extends Function>(
   fn: T,
   delay: number
 ): (...args: Parameters<T>) => void {
-  let timer: NodeJS.Timeout | null;
+  let timer: number | null;
 
   return (...args: Parameters<T>) => {
     if (timer) return;
