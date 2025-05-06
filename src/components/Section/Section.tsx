@@ -16,7 +16,7 @@ export const Section: FC<Props> = ({
     <section
       className={`${className} section flex ${optionalClassName}`.trim()}
     >
-      <Container sectionClassName={className}>{children}</Container>
+      <Container contentClassName={className}>{children}</Container>
     </section>
   );
 };
